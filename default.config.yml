@@ -1,0 +1,28 @@
+---
+### Repast Config
+#
+
+bind:
+  address: 0.0.0.0
+  port: 8080
+
+# ssl:
+#   cert: ./ssl/repast.crt
+#   key: ./ssl/repast.key
+
+backend: http://localhost:4000
+
+filters:
+  - headernorm
+
+headernorm:
+#   add:
+#     Accept: application/json
+#   require:
+#     accept:
+#   remove:
+
+# logging:
+#   level: WARN
+#   format: '[%(asctime)s] [%(levelname)s] %(message)s'
+
