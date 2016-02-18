@@ -40,14 +40,20 @@ class ConfigurationError(Exception):
 
 def run():
     '''Runs the Repast app'''
-    app.run(host=CONFIG['bind']['address'],
-            port=CONFIG['bind']['port'])
+    if 'ssl' in CONFIG:
+        app.run(host=CONFIG['bind']['address'],
+                port=CONFIG['bind']['port'],
+                ssl_context=(CONFIG['ssl']['cert'], CONFIG['ssl']['key']))
+    else:
+        app.run(host=CONFIG['bind']['address'],
+                port=CONFIG['bind']['port'])
 
 
 CONFIG.configure_logging()
 log.info('Repast startup...')
 log.info('Logging configured')
 
+# Set up the Flask app
 app = flask.Flask(__name__)
 app.CONFIG = CONFIG
 
