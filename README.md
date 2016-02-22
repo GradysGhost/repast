@@ -139,13 +139,26 @@ properly set. In this way, even if a request is made asking for an XML
 response, the request will be converted to asking for JSON before going to the
 backend.
 
+### status
+
+Adds a route to check Repast's status. By default, a `text/plain` message
+saying `OK` will be returned on `GET` calls to `/repast/status`. This default
+behavior requires no additional configuration beyond including the filter in
+the filter list. You can optionally override the message and `Content-Type`
+header with some simple config:
+
+    status:
+      message: '{"message":"OK"}'
+      content-type: 'application/json'
+
 
 ## Developing Filters
 
-A filter is a class that inherits `repast.BaseFilter` and overrides its
-constructor and its `apply` function. The constructor will get called during the
-server's startup procedure, and should be used to validate configs or do other
-startup tasks. The apply function should accept a `RepastRequest` object and
-should return either the modified `RepastRequest` to pass the request to the
-next filter or backend, or a Flask response to abort the request and respond.
+A filter is a class called Filter that inherits `repast.BaseFilter` and
+overrides its constructor and its `apply` function. The constructor will get
+called during the server's startup procedure, and should be used to validate
+configs or do other startup tasks. The apply function should accept a
+`RepastRequest` object and should return either the modified `RepastRequest` to
+pass the request to the next filter or backend, or a Flask response to abort the
+request and respond.
 
