@@ -1,6 +1,7 @@
 # Custom exclusions
 blank.py
 config.yml
+*.swp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
