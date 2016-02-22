@@ -139,3 +139,13 @@ properly set. In this way, even if a request is made asking for an XML
 response, the request will be converted to asking for JSON before going to the
 backend.
 
+
+## Developing Filters
+
+A filter is a class that inherits `repast.BaseFilter` and overrides its
+constructor and its `apply` function. The constructor will get called during the
+server's startup procedure, and should be used to validate configs or do other
+startup tasks. The apply function should accept a `RepastRequest` object and
+should return either the modified `RepastRequest` to pass the request to the
+next filter or backend, or a Flask response to abort the request and respond.
+
